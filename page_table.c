@@ -18,6 +18,8 @@ void* update(int page){
     //table[page]->frame = 
     //Consult the Backing store, this will be for Sameer
     table[page]->valid = 1;
+
+    //hi
 }
 
 
