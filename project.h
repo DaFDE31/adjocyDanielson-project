@@ -6,6 +6,7 @@ typedef struct Value
 {
     int value;
 };
+/*
 typedef struct Map
 {
     Key key;
@@ -14,3 +15,4 @@ typedef struct Map
     }
     
 };
+*/
