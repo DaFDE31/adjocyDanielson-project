@@ -11,16 +11,21 @@ typedef struct Value
 //Struct for an entry in the page table
 typedef struct 
 {
-    unsigned char* frame;
+    unsigned char frame;
     int valid;
 }entry;
 ///////////////////////////////////////
+
+typedef struct{
+    unsigned char page_number;
+    unsigned char frame_number;
+}TLBEntry;
 
 void establish();// invalidate all entries
 
 void* update(int page); //grabs a value from the backing store and puts it in the page table
 
-unsigned char* search(int page);//Should be changed to return a value to the TLB
+unsigned char search(int page);//Should be changed to return a value to the TLB
 
 
 // NOTE: COMMENTED OUT DUE TO ERRORS, FIX AND THEN UNCOMMENT

@@ -23,7 +23,7 @@ void* update(int page){
 }
 
 
-unsigned char* search(int page){
+unsigned char search(int page){
     if (table[page]->valid == 0){
         update(page);
     }
