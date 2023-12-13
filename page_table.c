@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <page.h>
+#include <page_table.h>
 
 entry* table[256];
 
