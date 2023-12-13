@@ -11,8 +11,8 @@
 // STOP - IMPORTS
 
 // START - Init. Vars
-unsigned char *page_number; 
-unsigned char *offset;
+unsigned char page_number; 
+unsigned char offset;
 int lengthOfAddressestxt = 1000;
 char* addresses = "addresses.txt";
 // STOP - Init. Vars
@@ -40,10 +40,13 @@ int findAddress(int targetLineNum){
     return targetValue; // returns the target integer 
 }
 
-
+void *putInPhysicalMemory(unsigned char frame, int offset){
+    int location = frame*256+offset;
+    //Use this to get the correct value
+}
 
 void readFromBackingStore(int logical_address) {
     page_number = (logical_address >> 8) & 0x00FF; // Extracts Page Number using Bit Shifting and Bit Masking
-    *offset = logical_address & 0x00FF; // Extracts Offset using Bit Masking
+    offset = logical_address & 0x00FF; // Extracts Offset using Bit Masking
 }
 // STOP - Functions

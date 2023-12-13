@@ -8,17 +8,16 @@
 // STOP - Imports
 
 // START - Init. Vars
-unsigned char *page_number; 
-unsigned char *offset;
+unsigned char page_number; 
+unsigned char offset;
 int lengthOfAddressestxt = 1000;
 char* addresses = "addresses.txt";
 // STOP - Init. Vars
 
 // START - Main Function
 int main() {
-    int logicalAddress, pageNumber, offset;
     for (int i = 0; i < lengthOfAddressestxt; i++){
-        int logicalAddress = findAddress(i); // Sets the logical address
+        logicalAddress = findAddress(i); // Sets the logical address
         readFromBackingStore(logicalAddress); // Updates the GLOBAL page_num and offset vars
 
         // if ( inTLB(page_number, offset) == 0 ) { // If it == 0 then it means that it IS IN the TLB

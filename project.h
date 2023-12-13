@@ -44,7 +44,13 @@ typedef struct Map
  * findAddress - Takes an argument of the line number to get the integer from, Outputs the integer held 
  * within the target line number.
 */
+
+void *putInPhysicalMemory(unsigned char frame, unsigned charoffset);
+
 int findAddress(int targetLineNum);
+
+unsigned char TLB_lookup(unsigned char page);
+void* TLB_insert(unsigned char page, unsigned char frame);
 
 /**
 * readFromBackingStore - Updates the page number and offset based on the inputted logical address
