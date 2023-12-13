@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "project.h"
+#include "page_table.h"
 // STOP - Imports
 
 // START - Init. Vars

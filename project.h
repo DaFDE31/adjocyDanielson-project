@@ -56,6 +56,6 @@ int TLB_lookup(unsigned char page);
 void* TLB_insert(unsigned char page, unsigned char frame);
 
 /**
-* readFromBackingStore - Updates the page number and offset based on the inputted logical address
+* addressTranslator - Updates the page number and offset based on the inputted logical address
 */
-void readFromBackingStore(int logical_address);
+void addressTranslator(int logical_address);
