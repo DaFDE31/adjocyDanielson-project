@@ -1,25 +1,25 @@
-#include <project.h>
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include "project.h"
+#include "page_table.c"
 
-int index = 0;
+int ind = 0; //ind stands for index
 TLBEntry* tlb[16];
 int TLBsize = 0;
 
 void* TLB_insert(unsigned char page, unsigned char frame) {
   // Check if the TLB is full
-  if (index >= 16) {
-    index = 0;
+  if (ind >= 16) {
+    ind = 0;
   }
-  tlb[index]->frame_number = frame;
-  tlb[index]->page_number = page;
+  tlb[ind]->frame_number = frame;
+  tlb[ind]->page_number = page;
   if (TLBsize <16){
     TLBsize++;
   }
-  index++;
+  ind++;
 }
 
 unsigned char TLB_lookup(unsigned char page){
@@ -31,5 +31,5 @@ unsigned char TLB_lookup(unsigned char page){
         enter++;
     }
     TLB_insert(page, search(page));
-    return tlb[index-1]->frame_number;
+    return tlb[ind-1]->frame_number;
 }

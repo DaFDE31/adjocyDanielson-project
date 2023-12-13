@@ -1,20 +1,19 @@
-#include <project.h>
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <project.h>
+#include "project.h"
 
-entry* table[256];
+page_entry* table[256];
 
 
-void establish(){
+void* establish(){
     for (int v = 0; v<256; v++){
         table[v]->valid = 0;
     }
 }
 
-void* update(int page){
+void* update(unsigned char  page){
     //table[page]->frame = 
     //Consult the Backing store, this will be for Sameer
     table[page]->valid = 1;
@@ -23,7 +22,7 @@ void* update(int page){
 }
 
 
-unsigned char search(int page){
+unsigned char search(unsigned char page){
     if (table[page]->valid == 0){
         update(page);
     }

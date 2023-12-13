@@ -17,9 +17,10 @@ char* addresses = "addresses.txt";
 // START - Main Function
 int main() {
     for (int i = 0; i < lengthOfAddressestxt; i++){
-        logicalAddress = findAddress(i); // Sets the logical address
+        establish(); // Creates the page table
+        int logicalAddress = findAddress(i); // Sets the logical address
         readFromBackingStore(logicalAddress); // Updates the GLOBAL page_num and offset vars
-
+        //putInPhysicalMemory
         // if ( inTLB(page_number, offset) == 0 ) { // If it == 0 then it means that it IS IN the TLB
         //    putInPhysicalMemory(frameNum, offset);
         // }

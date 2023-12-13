@@ -40,7 +40,7 @@ int findAddress(int targetLineNum){
     return targetValue; // returns the target integer 
 }
 
-void *putInPhysicalMemory(unsigned char frame, int offset){
+void *putInPhysicalMemory(unsigned char frame, unsigned char offset){
     int location = frame*256+offset;
     //Use this to get the correct value
 }
