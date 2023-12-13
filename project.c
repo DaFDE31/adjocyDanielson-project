@@ -42,7 +42,7 @@ int findAddress(int targetLineNum){
 
 
 
-void readFromBackingStore(int logical_address) {
+void addressTranslator(int logical_address) {
     page_number = (logical_address >> 8) & 0x00FF; // Extracts Page Number using Bit Shifting and Bit Masking
     *offset = logical_address & 0x00FF; // Extracts Offset using Bit Masking
 }
