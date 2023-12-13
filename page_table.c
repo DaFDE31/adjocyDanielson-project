@@ -7,13 +7,13 @@
 page_entry* table[256];
 
 
-void* establish(){
+void* page_establish(){
     for (int v = 0; v<256; v++){
         table[v]->valid = 0;
     }
 }
 
-void* update(unsigned char  page){
+void* page_update(unsigned char  page){
     //table[page]->frame = 
     //Consult the Backing store, this will be for Sameer
     table[page]->valid = 1;
@@ -22,7 +22,7 @@ void* update(unsigned char  page){
 }
 
 
-unsigned char search(unsigned char page){
+int page_search(unsigned char page){
     if (table[page]->valid == 0){
         update(page);
     }

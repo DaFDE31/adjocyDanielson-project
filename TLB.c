@@ -20,16 +20,18 @@ void* TLB_insert(unsigned char page, unsigned char frame) {
     TLBsize++;
   }
   ind++;
+  //return tlb[ind-1]->frame_number; This line shouldn't be necessary
+  
 }
 
-unsigned char TLB_lookup(unsigned char page){
+int TLB_lookup(unsigned char page){
     int enter = 0;
     while (enter < TLBsize){
         if (tlb[enter]->page_number = page){
-            return tlb[enter]->frame_number;
+            return (int) tlb[enter]->frame_number;
         }
         enter++;
     }
-    TLB_insert(page, search(page));
-    return tlb[ind-1]->frame_number;
+    //TLB_insert(page, search(page));
+    return -1;
 }

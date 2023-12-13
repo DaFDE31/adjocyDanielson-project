@@ -23,11 +23,11 @@ typedef struct{
     unsigned char frame_number;
 }TLBEntry;
 
-void* establish();// invalidate all entries
+void* page_establish();// invalidate all entries
 
-void* update(unsigned char page); //grabs a value from the backing store and puts it in the page table
+void* page_update(unsigned char page); //grabs a value from the backing store and puts it in the page table
 
-unsigned char search(unsigned char page);//Should be changed to return a value to the TLB
+int page_search(unsigned char page);//Should be changed to return a value to the TLB
 
 
 // NOTE: COMMENTED OUT DUE TO ERRORS, FIX AND THEN UNCOMMENT
@@ -51,7 +51,7 @@ void *putInPhysicalMemory(unsigned char frame, unsigned char offset);
 
 int findAddress(int targetLineNum);
 
-unsigned char TLB_lookup(unsigned char page);
+int TLB_lookup(unsigned char page);
 
 void* TLB_insert(unsigned char page, unsigned char frame);
 
