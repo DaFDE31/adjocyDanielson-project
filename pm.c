@@ -10,7 +10,7 @@ unsigned char frame;
 unsigned char offset;
 
 void* addFrame(int frameNum){
-
+    
 }
 
 char* get_num_loc(){
