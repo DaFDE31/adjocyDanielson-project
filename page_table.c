@@ -13,9 +13,8 @@ void* page_establish(){
     }
 }
 
-void* page_update(unsigned char  page){
-    //table[page]->frame = 
-    //Consult the Backing store, this will be for Sameer
+void* page_update(unsigned char page, unsigned char frame_number){
+    table[page]->frame = frame_number;
     table[page]->valid = 1;
 
     //hi
@@ -24,8 +23,8 @@ void* page_update(unsigned char  page){
 
 int page_search(unsigned char page){
     if (table[page]->valid == 0){
-        update(page);
+        return -1;
     }
-    return table[page]->frame; 
+    return (int)table[page]->frame; 
 
 }
