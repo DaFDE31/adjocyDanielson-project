@@ -4,22 +4,30 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "project.h"
-#include "page_table.h"
+#include "page_table.c"
+#include "TLB.c"
+//#include "project.c"
 // STOP - Imports
 
 // START - Init. Vars
-unsigned char page_number; 
-unsigned char offset;
+extern unsigned char page_number; 
+extern unsigned char offset;
 int lengthOfAddressestxt = 1000;
 char* addresses = "addresses.txt";
+int logicalAddress;
 // STOP - Init. Vars
 
 // START - Main Function
-int main() {
+void addressTranslator(int logical_address) {
+    page_number = (logical_address >> 8) & 0x00FF; // Extracts Page Number using Bit Shifting and Bit Masking
+    offset = logical_address & 0x00FF; // Extracts Offset using Bit Masking
+}
+
+int main(int argc, char * argv[]) {
     for (int i = 0; i < lengthOfAddressestxt; i++){
         page_establish(); // Creates the page table
-        int logicalAddress = findAddress(i); // Sets the logical address
-        readFromBackingStore(logicalAddress); // Updates the GLOBAL page_num and offset var
+        logicalAddress = findAddress(i); // Sets the logical address
+        addressTranslator(logicalAddress); // Updates the GLOBAL page_num and offset var
 
 
         unsigned char frame_number;// Hopfully we can use this to look up a spefic frame in physical memory
@@ -31,22 +39,24 @@ int main() {
                 // Use physical memory and backing store to get the frame
                 frame_number = 0;// 0 is to be replaced with that method discussed above
                 page_update(page_number, frame_number);
+                printf("Page fault!");
             }
             else{
                 frame_number = (unsigned char) temp_frame;
             }
             TLB_insert(page_number, frame_number);
-            putInPhysicalMemory(frame_number, offset);
+            PMget(frame_number, offset);
         }
         else{
             frame_number = (unsigned char)temp_tlbFrame;
-            putInPhysicalMemory(frame_number, offset);
+            PMget(frame_number, offset);
         }
         
 
     }
 
     // Print the results <TESTING ONLY>
+    printf("Address Number: %d\n", logicalAddress);
     printf("Page Number: %d\n", page_number);
     printf("Offset: %d\n", offset);
 

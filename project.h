@@ -1,17 +1,18 @@
 
 
 //Struct for an entry in the page table
-typedef struct 
-{
+typedef struct {
     unsigned char frame;
     int valid;
-}page_entry;
-///////////////////////////////////////
+} page_entry;
+
 
 typedef struct{
     unsigned char page_number;
     unsigned char frame_number;
-}TLBEntry;
+} TLBEntry;
+
+
 
 void* page_establish();// invalidate all entries
 
@@ -38,7 +39,7 @@ typedef struct Map
  * within the target line number.
 */
 
-void *putInPhysicalMemory(unsigned char frame, unsigned char offset);
+void *PMget(unsigned char frame, unsigned char offset);
 
 int findAddress(int targetLineNum);
 

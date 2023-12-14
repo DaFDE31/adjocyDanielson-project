@@ -42,14 +42,10 @@ int findAddress(int targetLineNum){
     return targetValue; // returns the target integer 
 }
 
-void *putInPhysicalMemory(unsigned char frame, unsigned char offset){
+void *PMget(unsigned char frame, unsigned char offset){
     int location = frame*256+offset;
     //Use this to get the correct value
 }
 
-void addressTranslator(int logical_address) {
-    page_number = (logical_address >> 8) & 0x00FF; // Extracts Page Number using Bit Shifting and Bit Masking
-    offset = logical_address & 0x00FF; // Extracts Offset using Bit Masking
-}
 
 // STOP - Functions
