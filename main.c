@@ -6,7 +6,7 @@
 #include "project.h"
 #include "page_table.c"
 #include "TLB.c"
-//#include "project.c"
+#include "project.c"
 // STOP - Imports
 
 // START - Init. Vars
