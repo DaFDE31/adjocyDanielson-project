@@ -7,7 +7,7 @@
 
 int ind = 0; //ind stands for index
 TLBEntry* tlb[16];
-int TLBsize = 0;
+int TLBsize = 0; // Amount of entries in the TLB
 
 void* TLB_insert(unsigned char page, unsigned char frame) {
   // Check if the TLB is full
