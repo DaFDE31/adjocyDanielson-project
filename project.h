@@ -1,14 +1,4 @@
-/*typedef struct Key
 
-{
-    int key;
-};
-
-typedef struct Value
-{
-    int value;
-};
-*/
 
 //Struct for an entry in the page table
 typedef struct 
@@ -24,6 +14,7 @@ typedef struct{
 }TLBEntry;
 
 void* page_establish();// invalidate all entries
+
 
 void* page_update(unsigned char page, unsigned char frame_number); //updates the page table by making that page with that frame and validating it
 

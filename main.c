@@ -23,6 +23,7 @@ int main() {
 
 
         unsigned char frame_number;// Hopfully we can use this to look up a spefic frame in physical memory
+
         int temp_tlbFrame = TLB_lookup(page_number);// holds the value so we don't have to call the method twice
         if ( temp_tlbFrame == -1){// TLB miss
             int temp_frame = page_search(page_number);// holds the value so we don't have to call the method twice
@@ -42,6 +43,7 @@ int main() {
             putInPhysicalMemory(frame_number, offset);
         }
         
+
     }
 
     // Print the results <TESTING ONLY>
@@ -50,4 +52,5 @@ int main() {
 
     return 0;
 }
+
 // STOP - Main Function
