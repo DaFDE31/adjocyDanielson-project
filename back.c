@@ -6,7 +6,7 @@
 #include <project.h>
 
 FILE* fp = NULL;
-entry* table[256];
+
 
 int openFile(char* readFile) {
     fp = fopen(readFile,"rb");
@@ -28,4 +28,10 @@ int openFile(char* readFile) {
     }*/
     free(backing);
     return 0;
+}
+
+int read_page(unsigned char page){
+    fseek(fp, (int) page * 256, SEEK_SET);
+    char* pm_loc = get_mem_loc();
+    fread(pm_loc, 256,1,fp);
 }
