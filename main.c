@@ -1,5 +1,4 @@
 // START - Imports
-#include <project.h>
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
@@ -42,25 +41,6 @@ int main() {
             putInPhysicalMemory(frame_number, offset);
         }
         
-
-
-
-
-        //putInPhysicalMemory
-        // if ( inTLB(page_number, offset) == 0 ) { // If it == 0 then it means that it IS IN the TLB
-        //    putInPhysicalMemory(frameNum, offset);
-        // }
-        // else {
-        //    if ( inPageTable(page_number, offset) == 0 ) { // If it == 0 then it means that it IS IN the page table
-        //       putInTLB(page_number, offset);   
-        //       putInPhysicalMemory(frameNum, offset);
-        //    }
-        //    else {
-        //       pageFault(page_number, offset);
-        //       putInTLB(page_number, offset);
-        //       putInPhysicalMemory(frameNum, offset);
-        //    }
-        // }
     }
 
     // Print the results <TESTING ONLY>
