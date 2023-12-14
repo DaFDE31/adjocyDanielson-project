@@ -25,7 +25,7 @@ typedef struct{
 
 void* page_establish();// invalidate all entries
 
-void* page_update(unsigned char page); //grabs a value from the backing store and puts it in the page table
+void* page_update(unsigned char page, unsigned char frame_number); //updates the page table by making that page with that frame and validating it
 
 int page_search(unsigned char page);//Should be changed to return a value to the TLB
 
