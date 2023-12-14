@@ -1,10 +1,10 @@
 
 
 //Struct for an entry in the page table
-typedef struct 
+typedef struct
 {
-    unsigned char frame;
-    int valid;
+    int frame[256];
+    int valid[256];
 }page_entry;
 ///////////////////////////////////////
 
@@ -15,8 +15,7 @@ typedef struct{
 
 void* page_establish();// invalidate all entries
 
-
-void* page_update(unsigned char page, unsigned char frame_number); //updates the page table by making that page with that frame and validating it
+void* page_update(unsigned char page); //grabs a value from the backing store and puts it in the page table
 
 int page_search(unsigned char page);//Should be changed to return a value to the TLB
 

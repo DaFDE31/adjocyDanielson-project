@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "project.h"
-#include "page_table.h"
+#include "page.h"
 // STOP - Imports
 
 // START - Init. Vars
@@ -14,36 +14,82 @@ int lengthOfAddressestxt = 1000;
 char* addresses = "addresses.txt";
 // STOP - Init. Vars
 
+//side methods
+
+FILE* fp = NULL;
+
+
+int openFile(char* readFile) {
+    fp = fopen(readFile,"r");
+    if(fp == NULL) {
+        perror("fopen");
+        exit(EXIT_FAILURE);
+    }
+
+    char* bin = malloc(256 * 256);
+    for(int i = 0; i < (256 * 256); i++)
+        fread(&bin[i],(256 * 256) +1, 1, fp);
+    
+    
+}
+
+
+
+int read_page(char* readFile){
+    fp = fopen(readFile, "r");
+    if(fp == NULL) {
+        perror("fopen");
+        exit(EXIT_FAILURE);
+    }
+
+    
+}
+
 // START - Main Function
-int main() {
+int main(int argc, char* argv[]) {
+
+    if(argc < 2)
+        return 1;
+    
+
     for (int i = 0; i < lengthOfAddressestxt; i++){
         page_establish(); // Creates the page table
         int logicalAddress = findAddress(i); // Sets the logical address
-        readFromBackingStore(logicalAddress); // Updates the GLOBAL page_num and offset var
+        addressTranslator(logicalAddress); // Updates the GLOBAL page_num and offset var
 
 
         unsigned char frame_number;// Hopfully we can use this to look up a spefic frame in physical memory
+        if (TLB_lookup(page_number) == -1){// TLB miss
+            if(page_search(page_number)== -1){// Page fault
+            printf("page fault!");
+            }
+                
 
-        int temp_tlbFrame = TLB_lookup(page_number);// holds the value so we don't have to call the method twice
-        if ( temp_tlbFrame == -1){// TLB miss
-            int temp_frame = page_search(page_number);// holds the value so we don't have to call the method twice
-            if(temp_frame == -1){// Page fault
-                // Use physical memory and backing store to get the frame
-                frame_number = 0;// 0 is to be replaced with that method discussed above
-                page_update(page_number, frame_number);
-            }
-            else{
-                frame_number = (unsigned char) temp_frame;
-            }
-            TLB_insert(page_number, frame_number);
-            putInPhysicalMemory(frame_number, offset);
         }
         else{
-            frame_number = (unsigned char)temp_tlbFrame;
+            frame_number = (unsigned char)TLB_lookup(page_number);
             putInPhysicalMemory(frame_number, offset);
         }
         
 
+
+
+
+        //putInPhysicalMemory
+        // if ( inTLB(page_number, offset) == 0 ) { // If it == 0 then it means that it IS IN the TLB
+        //    putInPhysicalMemory(frameNum, offset);
+        // }
+        // else {
+        //    if ( inPageTable(page_number, offset) == 0 ) { // If it == 0 then it means that it IS IN the page table
+        //       putInTLB(page_number, offset);   
+        //       putInPhysicalMemory(frameNum, offset);
+        //    }
+        //    else {
+        //       pageFault(page_number, offset);
+        //       putInTLB(page_number, offset);
+        //       putInPhysicalMemory(frameNum, offset);
+        //    }
+        // }
     }
 
     // Print the results <TESTING ONLY>
@@ -52,5 +98,4 @@ int main() {
 
     return 0;
 }
-
 // STOP - Main Function
